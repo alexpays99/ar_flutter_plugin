@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'ar_flutter_plugin'
-  s.version          = '0.6.2'
+  s.version          = '0.6.15'
   s.summary          = 'A Flutter plugin for shared AR experiences.'
   s.description      = <<-DESC
 A Flutter plugin for shared AR experiences supporting Android and iOS.
@@ -20,7 +20,7 @@ A Flutter plugin for shared AR experiences supporting Android and iOS.
   s.static_framework = true
   #s.dependency 'ARCore/CloudAnchors', '~> 1.12.0'
   #s.dependency 'ARCore', '~> 1.2.0'
-  s.dependency 'ARCore/CloudAnchors', '~> 1.33.0' # Updated from 1.32 to 1.33 to support Apple Silicon, info here: https://github.com/google-ar/arcore-ios-sdk/issues/59#issuecomment-1219756010
+  s.dependency 'ARCore/CloudAnchors', '~> 1.36.0' # Updated from 1.32 to 1.33 to support Apple Silicon, info here: https://github.com/google-ar/arcore-ios-sdk/issues/59#issuecomment-1219756010
   s.platform = :ios, '13.0'
 
 
