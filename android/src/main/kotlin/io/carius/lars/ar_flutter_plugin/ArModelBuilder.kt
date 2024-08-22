@@ -96,12 +96,16 @@ class ArModelBuilder {
 
         val gltfNode = CustomTransformableNode(transformationSystem, objectManagerChannel, enablePans, enableRotation)
 
-        ModelRenderable.builder()
-                .setSource(context, RenderableSource.builder().setSource(
+        val res = ModelRenderable.builder()
+            .setSource(
+                context,
+                RenderableSource.builder()
+                    .setSource(
                         context,
                         Uri.parse(modelPath),
-                        RenderableSource.SourceType.GLTF2)
-                        .build())
+                        RenderableSource.SourceType.GLB
+                    ).build()
+            )
                 .setRegistryId(modelPath)
                 .build()
                 .thenAccept{ renderable ->
@@ -117,6 +121,28 @@ class ArModelBuilder {
                     completableFutureNode.completeExceptionally(throwable)
                     null // return null because java expects void return (in java, void has no instance, whereas in Kotlin, this closure returns a Unit which has one instance)
                 }
+
+        // ModelRenderable.builder()
+        //         .setSource(context, RenderableSource.builder().setSource(
+        //                 context,
+        //                 Uri.parse(modelPath),
+        //                 RenderableSource.SourceType.GLTF2)
+        //                 .build())
+        //         .setRegistryId(modelPath)
+        //         .build()
+        //         .thenAccept{ renderable ->
+        //             gltfNode.renderable = renderable
+        //             gltfNode.name = name
+        //             val transform = deserializeMatrix4(transformation)
+        //             gltfNode.worldScale = transform.first
+        //             gltfNode.worldPosition = transform.second
+        //             gltfNode.worldRotation = transform.third
+        //             completableFutureNode.complete(gltfNode)
+        //         }
+        //         .exceptionally { throwable ->
+        //             completableFutureNode.completeExceptionally(throwable)
+        //             null // return null because java expects void return (in java, void has no instance, whereas in Kotlin, this closure returns a Unit which has one instance)
+        //         }
 
     return completableFutureNode
     }
